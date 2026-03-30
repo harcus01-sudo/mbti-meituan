@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { Welcome } from './components/Welcome';
 import { Quiz } from './components/Quiz';
@@ -24,15 +24,59 @@ export interface ResultData {
   };
 }
 
+interface SavedState {
+  step: Step;
+  currentQuestionIndex: number;
+  answers: Answer[];
+  shuffledQuestions: Question[];
+  resultData: ResultData | null;
+}
+
+const STORAGE_KEY = 'mbti_progress';
+
 export default function App() {
   const [step, setStep] = useState<Step>('welcome');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [resultData, setResultData] = useState<ResultData | null>(null);
   const [shuffledQuestions, setShuffledQuestions] = useState<Question[]>([]);
+  const [isRestored, setIsRestored] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const data: SavedState = JSON.parse(saved);
+        setStep(data.step || 'welcome');
+        setCurrentQuestionIndex(data.currentQuestionIndex || 0);
+        setAnswers(data.answers || []);
+        setShuffledQuestions(data.shuffledQuestions || []);
+        setResultData(data.resultData || null);
+        setIsRestored(true);
+      } catch (e) {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isRestored) return;
+    const state: SavedState = {
+      step,
+      currentQuestionIndex,
+      answers,
+      shuffledQuestions,
+      resultData
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }, [step, currentQuestionIndex, answers, shuffledQuestions, resultData, isRestored]);
+
+  const clearProgress = () => {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem('mbti_reviewed');
+  };
 
   const handleStart = () => {
-    // Fisher-Yates shuffle to randomize questions
     const shuffled = [...questions];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -43,8 +87,7 @@ export default function App() {
     setCurrentQuestionIndex(0);
     setAnswers([]);
     setResultData(null);
-    // 清除之前的评价状态，确保每次测试开始都是精简版
-    localStorage.removeItem('mbti_reviewed');
+    clearProgress();
   };
 
   const handleAnswer = (value: string, weight: number) => {
