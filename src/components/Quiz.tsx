@@ -168,7 +168,8 @@ export function Quiz({ question, currentIndex, totalQuestions, onAnswer, onPrevi
               ×
             </button>
             <h3 className="text-xl font-bold text-gray-900 mb-4">如何答题</h3>
-            <p className="text-gray-600 mb-6">请根据题目描述，选择符合你实际情况的程度：</p>
+            <p className="text-gray-600 mb-4">请根据题目描述，选择符合你实际情况的程度：</p>
+            <p className="text-gray-500 mb-6 text-sm italic">本次心理测验是为了让你更好地了解自我，所有问题的答案无对错之分，请按你的实际情况真实回答。</p>
             <div className="flex justify-center items-center gap-4 mb-6">
               <div className="flex flex-col items-center">
                 <div className="w-14 h-14 rounded-full border-4 border-indigo-500 mb-2"></div>
