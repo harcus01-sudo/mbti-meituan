@@ -22,7 +22,7 @@ export function Welcome({ onStart }: WelcomeProps) {
         加洲心理
       </h1>
          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
-        MBTI 极简测试
+        趣味人格简测
       </h1>
       <p className="text-lg text-gray-600 mb-8 max-w-md leading-relaxed">
         只需 38 道题，快速测出你的真实性格底色。

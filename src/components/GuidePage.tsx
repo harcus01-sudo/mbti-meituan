@@ -86,7 +86,7 @@ export function GuidePage({ resultData, onBack }: GuidePageProps) {
           >
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center leading-tight">
               美团消费后评价<br/>
-              <span className="text-emerald-400">领取专属MBTI徽章</span>
+              <span className="text-emerald-400">领取专属徽章</span>
             </h1>
             
             <div className="mb-8">

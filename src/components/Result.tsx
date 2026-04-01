@@ -198,7 +198,7 @@ export function Result({ resultData, onRestart, onGoToGuide }: ResultProps) {
               transition={{ delay: 0.1 }}
               className="inline-block px-4 py-1.5 border border-white/20 rounded-full text-xs font-bold tracking-[0.2em] uppercase text-white/70 mb-6"
             >
-              MBTI Personality Profile
+              MBTI人格类型
             </motion.div>
             
             <motion.h1 
