@@ -46,19 +46,18 @@ export function Quiz({ question, currentIndex, totalQuestions, onAnswer, onPrevi
   const handleSelect = (index: number) => {
     setSelectedIndex(index);
     const weights = [2, 1, 0, 1, 2];
-    const keys = [config.leftKey, config.leftKey, 'neutral', config.rightKey, config.rightKey];
-    const fillColors = [LEFT_COLOR, LEFT_COLOR, NEUTRAL_COLOR, RIGHT_COLOR, RIGHT_COLOR];
+    const keys = [config.rightKey, config.rightKey, 'neutral', config.leftKey, config.leftKey];
     setTimeout(() => {
       onAnswer(keys[index], weights[index]);
     }, 200);
   };
 
   const circles = [
-    { size: 56, borderWidth: 4, color: LEFT_COLOR },
-    { size: 44, borderWidth: 3, color: LEFT_COLOR },
-    { size: 36, borderWidth: 3, color: NEUTRAL_COLOR },
+    { size: 56, borderWidth: 4, color: RIGHT_COLOR },
     { size: 44, borderWidth: 3, color: RIGHT_COLOR },
-    { size: 56, borderWidth: 4, color: RIGHT_COLOR }
+    { size: 36, borderWidth: 3, color: NEUTRAL_COLOR },
+    { size: 44, borderWidth: 3, color: LEFT_COLOR },
+    { size: 56, borderWidth: 4, color: LEFT_COLOR }
   ];
 
   return (
@@ -139,9 +138,9 @@ export function Quiz({ question, currentIndex, totalQuestions, onAnswer, onPrevi
               </div>
 
               <div className="flex justify-between items-center w-full max-w-[320px] px-2 text-sm font-medium text-gray-500">
-                <span>同意</span>
-                <span>中立</span>
                 <span>反对</span>
+                <span>中立</span>
+                <span>同意</span>
               </div>
             </div>
           </motion.div>
@@ -172,16 +171,16 @@ export function Quiz({ question, currentIndex, totalQuestions, onAnswer, onPrevi
             <p className="text-gray-500 mb-6 text-sm italic">本次心理测验是为了让你更好地了解自我，所有问题的答案无对错之分，请按你的实际情况真实回答。</p>
             <div className="flex justify-center items-center gap-4 mb-6">
               <div className="flex flex-col items-center">
-                <div className="w-14 h-14 rounded-full border-4 border-indigo-500 mb-2"></div>
-                <span className="text-sm text-gray-600">同意</span>
+                <div className="w-14 h-14 rounded-full border-4 border-teal-500 mb-2"></div>
+                <span className="text-sm text-gray-600">反对</span>
               </div>
               <div className="flex flex-col items-center">
                 <div className="w-9 h-9 rounded-full border-4 border-gray-400 mb-2"></div>
                 <span className="text-sm text-gray-600">中立</span>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-14 h-14 rounded-full border-4 border-teal-500 mb-2"></div>
-                <span className="text-sm text-gray-600">反对</span>
+                <div className="w-14 h-14 rounded-full border-4 border-indigo-500 mb-2"></div>
+                <span className="text-sm text-gray-600">同意</span>
               </div>
             </div>
             <motion.button
