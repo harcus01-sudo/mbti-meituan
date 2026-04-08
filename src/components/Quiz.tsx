@@ -19,8 +19,8 @@ const dimensionConfig = {
   'J/P': { leftKey: 'J', rightKey: 'P' }
 };
 
-const LEFT_COLOR = '#6366f1';
-const RIGHT_COLOR = '#14b8a6';
+const LEFT_COLOR = '#14b8a6';
+const RIGHT_COLOR = '#6366f1';
 const NEUTRAL_COLOR = '#9ca3af';
 
 export function Quiz({ question, currentIndex, totalQuestions, onAnswer, onPrevious }: QuizProps) {
@@ -30,7 +30,7 @@ export function Quiz({ question, currentIndex, totalQuestions, onAnswer, onPrevi
 
   const config = dimensionConfig[question.dimension];
 
-  const ambientColor = 'bg-indigo-400/20';
+  const ambientColor = 'bg-teal-400/20';
 
   React.useEffect(() => {
     if (currentIndex > 0) {
@@ -86,7 +86,7 @@ export function Quiz({ question, currentIndex, totalQuestions, onAnswer, onPrevi
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
             <motion.div
-              className="bg-indigo-600 h-2 rounded-full"
+              className="bg-teal-600 h-2 rounded-full"
               initial={{ width: `${(currentIndex / totalQuestions) * 100}%` }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.3 }}
@@ -171,7 +171,7 @@ export function Quiz({ question, currentIndex, totalQuestions, onAnswer, onPrevi
             <p className="text-gray-500 mb-6 text-sm italic">本次心理测验是为了让你更好地了解自我，所有问题的答案无对错之分，请按你的实际情况真实回答。</p>
             <div className="flex justify-center items-center gap-4 mb-6">
               <div className="flex flex-col items-center">
-                <div className="w-14 h-14 rounded-full border-4 border-teal-500 mb-2"></div>
+                <div className="w-14 h-14 rounded-full border-4 border-indigo-500 mb-2"></div>
                 <span className="text-sm text-gray-600">反对</span>
               </div>
               <div className="flex flex-col items-center">
@@ -179,7 +179,7 @@ export function Quiz({ question, currentIndex, totalQuestions, onAnswer, onPrevi
                 <span className="text-sm text-gray-600">中立</span>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-14 h-14 rounded-full border-4 border-indigo-500 mb-2"></div>
+                <div className="w-14 h-14 rounded-full border-4 border-teal-500 mb-2"></div>
                 <span className="text-sm text-gray-600">同意</span>
               </div>
             </div>
